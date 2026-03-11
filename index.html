@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aniket Singh — Computer Science Student & Software Developer. Explore my portfolio, projects, and achievements." />
+  <meta name="keywords" content="Aniket Singh, Portfolio, Software Developer, CS Student, VIT-AP" />
+  <meta name="author" content="Aniket Singh" />
+  <meta property="og:title" content="Aniket Singh — Portfolio" />
+  <meta property="og:description" content="Computer Science Student | Software Developer — Building practical user-centric tech solutions." />
+  <meta property="og:type" content="website" />
+  <title>Aniket Singh — Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>⚡</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-ring"></div>
+    <div class="loader-text">Initializing…</div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- Cursor Glow -->
+  <div id="cursor-glow"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Floating Tech Icons -->
+  <div class="floating-icons-container" id="floating-icons"></div>
+
+  <!-- SVG defs for skill gradients -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#00d4ff"/>
+        <stop offset="100%" stop-color="#a855f7"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ───────────────── NAVIGATION ───────────────── -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-logo">AS<span>.dev</span></a>
+
+    <div class="nav-links" id="nav-links">
+      <a href="#hero"           class="nav-link active">Home</a>
+      <a href="#about"          class="nav-link">About</a>
+      <a href="#education"      class="nav-link">Education</a>
+      <a href="#skills"         class="nav-link">Skills</a>
+      <a href="#projects"       class="nav-link">Projects</a>
+      <a href="#certifications" class="nav-link">Certs</a>
+      <a href="#achievements"   class="nav-link">Achievements</a>
+    </div>
+
+    <div class="nav-controls">
+      <button class="nav-btn cmd-palette-hint" id="cmd-palette-btn" title="Command Palette (Ctrl+K)"><span class="kbd-hint">⌘K</span></button>
+      <button class="nav-btn" id="theme-toggle" title="Toggle Theme">🌙</button>
+      <button class="nav-btn" id="edit-toggle" title="Toggle Edit Mode">✏️</button>
+
+      <div class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ───────────────── MAIN CONTENT ───────────────── -->
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-content">
+        <div class="hero-badge reveal"><span class="dot"></span> Open to Internships</div>
+        <h1 class="hero-name reveal reveal-delay-1" id="hero-name"></h1>
+        <p  class="hero-title reveal reveal-delay-2" id="hero-title"></p>
+        <div class="typing-wrapper reveal reveal-delay-3">
+          <span>$ </span><span id="typing-text"></span><span class="typing-cursor"></span>
+        </div>
+        <div class="hero-buttons reveal reveal-delay-4" id="hero-buttons"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// about me</span>
+        <h2 class="section-title reveal reveal-delay-1">Get to <span class="gradient-text">Know Me</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal" id="about-text"></div>
+        <div class="about-stats" id="about-stats"></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// education</span>
+        <h2 class="section-title reveal reveal-delay-1">Academic <span class="gradient-text">Journey</span></h2>
+        <p class="section-subtitle reveal reveal-delay-2">A timeline of my educational milestones</p>
+      </div>
+      <div class="timeline" id="education-timeline"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// skills</span>
+        <h2 class="section-title reveal reveal-delay-1">Technical <span class="gradient-text">Arsenal</span></h2>
+        <p class="section-subtitle reveal reveal-delay-2">Technologies and tools I work with</p>
+      </div>
+      <div class="skills-grid" id="skills-grid"></div>
+
+      <!-- Skill Radar Chart -->
+      <div class="radar-container reveal" style="margin-top:60px;">
+        <h3 style="text-align:center;margin-bottom:30px;font-size:1.1rem;color:var(--accent-blue);font-family:var(--font-mono);">> skill_radar.render()</h3>
+        <canvas id="radar-chart" width="500" height="500"></canvas>
+      </div>
+    </section>
+
+    <!-- TECH STACK ORBIT -->
+    <section id="tech-orbit" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// tech stack</span>
+        <h2 class="section-title reveal reveal-delay-1">Technology <span class="gradient-text">Orbit</span></h2>
+        <p class="section-subtitle reveal reveal-delay-2">The tools orbiting my development universe</p>
+      </div>
+      <div class="orbit-container reveal" id="orbit-container"></div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// projects</span>
+        <h2 class="section-title reveal reveal-delay-1">Featured <span class="gradient-text">Work</span></h2>
+        <p class="section-subtitle reveal reveal-delay-2">Things I've built that I'm proud of</p>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// certifications</span>
+        <h2 class="section-title reveal reveal-delay-1">Professional <span class="gradient-text">Credentials</span></h2>
+      </div>
+      <div class="cert-grid" id="cert-grid"></div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// achievements</span>
+        <h2 class="section-title reveal reveal-delay-1">Notable <span class="gradient-text">Milestones</span></h2>
+      </div>
+      <div class="achievements-grid" id="achievements-grid"></div>
+    </section>
+
+    <!-- LANGUAGES & HOBBIES -->
+    <section id="extras" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// more about me</span>
+        <h2 class="section-title reveal reveal-delay-1">Languages & <span class="gradient-text">Hobbies</span></h2>
+      </div>
+      <div class="lang-hobby-grid">
+        <div>
+          <h3 class="reveal" style="margin-bottom:20px; color:var(--accent-blue); font-size:1rem;">🗣️ Languages</h3>
+          <div class="mini-grid" id="languages-grid"></div>
+        </div>
+        <div>
+          <h3 class="reveal" style="margin-bottom:20px; color:var(--accent-blue); font-size:1rem;">🎯 Hobbies</h3>
+          <div class="mini-grid" id="hobbies-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI TERMINAL -->
+    <section id="ai-terminal" class="section">
+      <div class="section-header">
+        <span class="section-label reveal">// terminal</span>
+        <h2 class="section-title reveal reveal-delay-1">AI <span class="gradient-text">Terminal</span></h2>
+        <p class="section-subtitle reveal reveal-delay-2">Explore my portfolio via command line — type <code style="color:var(--accent-cyan);font-family:var(--font-mono);">help</code> to get started</p>
+      </div>
+      <div class="terminal-window glass-card reveal" id="terminal-window">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">as.dev — bash</span>
+        </div>
+        <div class="terminal-body" id="terminal-body"></div>
+        <div class="terminal-input-line">
+          <span class="terminal-prompt" id="terminal-prompt"></span>
+          <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false" autofocus />
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links" id="footer-links"></div>
+    <p>Designed & Built by <a href="#hero">Aniket Singh</a> &copy; <span id="footer-year"></span></p>
+  </footer>
+
+  <!-- Project Preview Modal -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-icon" id="modal-icon"></div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+      <div class="project-tags modal-tags" id="modal-tags"></div>
+      <a class="btn btn-primary btn-sm" id="modal-link" href="#" target="_blank">View Project →</a>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="edit-modal-overlay" id="edit-modal-overlay">
+    <div class="edit-modal" id="edit-modal">
+      <h2 id="edit-modal-title">Edit Item</h2>
+      <div id="edit-modal-fields"></div>
+      <button class="btn btn-primary" id="edit-modal-save">💾 Save Changes</button>
+      <button class="btn btn-secondary" id="edit-modal-cancel" style="margin-top:8px">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Command Palette -->
+  <div class="cmd-palette-overlay" id="cmd-palette-overlay">
+    <div class="cmd-palette">
+      <div class="cmd-palette-header">
+        <span class="cmd-palette-icon">⚡</span>
+        <input type="text" class="cmd-palette-input" id="cmd-palette-input" placeholder="Type a command or search…" autocomplete="off" />
+        <span class="cmd-palette-esc">ESC</span>
+      </div>
+      <div class="cmd-palette-results" id="cmd-palette-results"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
